@@ -1,7 +1,8 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () { 
-    var start = document.getElementById("start"), canGlow = true;
+    var start = document.getElementById("start"), canGlow = true, clicked = false;
     start.addEventListener("click", function () {
+      clicked = true;
       start.classList.remove("glow");
       canGlow = false;
       initialAnimation();
@@ -13,6 +14,10 @@
       if (!canGlow) return;
       start.classList.add("glow");
     });
+    setTimeout(function () {
+      if (clicked) return;
+      alert("Click on the disc!");
+    }, 5000);
     setTimeout(function () {
       if (!canGlow) return;
       start.classList.add("glow");
