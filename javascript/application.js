@@ -37,6 +37,10 @@
       });
       headers[i].addEventListener("click", function () {
         if (this.classList.contains("on")) return;
+        var identifier, classList = this.classList;
+        for (var j = 0; j < classList.length; j++) {
+          if (classList[j] !== "header-item-content") identifier = classList[j];
+        }
         if (alreadySelected) {
           var allHeaders = document.querySelectorAll(".header-item.on")
           for (var j = 0; j < allHeaders.length; j++) allHeaders[j].classList.remove("on");
@@ -46,6 +50,7 @@
         var selector = "." + this.getAttribute("class").replace("-content ", ".");
         document.querySelectorAll(selector)[0].classList.add("on");
         this.classList.add("on");
+        reactToHeaderClick(identifier);
       });
     }
   });

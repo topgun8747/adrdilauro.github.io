@@ -320,7 +320,6 @@ body {
 
 .page-content {
   z-index: 21;
-  height: 100%;
   width: 100%;
   position: fixed;
   top: 0;
@@ -328,10 +327,6 @@ body {
   overflow: hidden;
   background-color: transparent;
   display: none;
-}
-
-.page-content.on {
-  display: block;
 }
 
 .page-content .actual-content {
