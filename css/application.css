@@ -334,7 +334,6 @@ body {
   background-color: rgba(255, 255, 255, 0.75);
   height: calc(100% - 120px);
   width: calc(60% - 40px);
-  overflow: auto;
   padding: 20px;
   font-family: Georgia, serif;
   line-height: 16px;
