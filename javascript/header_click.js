@@ -28,6 +28,7 @@ function reactToHeaderClick (identifier) {
       setTimeout(function () {
         document.getElementById("header-up").style.backgroundColor = "black";
       }, 300);
+      newContent.style.top = "80px";
       instructions = [
         {
           elements: ".page-content." + identifier,
@@ -35,6 +36,10 @@ function reactToHeaderClick (identifier) {
             {
               property: "z-index",
               value: "26"
+            },
+            {
+              property: "top",
+              value: "0px"
             },
             {
               property: "height",
@@ -62,15 +67,48 @@ function reactToHeaderClick (identifier) {
         }
       ];
       if (currentlyOn) {
+        var minHeight = parseInt(getComputedStyle(currentlyContent).height);
         currentlyContent.style.overflow = "hidden";
+        newContent.style.top = "";
         instructions.push({
-          //elements:
+          elements: ".page-content.on",
+          preStyling: [
+            {
+              property: "min-height",
+              value: minHeight + "px"
+            },
+            {
+              property: "bottom",
+              value: "0px"
+            }
+          ],
+          animations: [
+            {
+              property: "height",
+              animationDetails: {
+                easing: "linear",
+                duration: "2s"
+              },
+              final: "0px"
+            },
+            {
+              property: "top",
+              animationDetails: {
+                easing: "linear",
+                duration: "2s"
+              },
+              final: "100%"
+            }
+          ]
         });
       }
       tradeWind.run(instructions, function () {
         if (currentlyOn) {
           currentlyOn.classList.remove("on");
           currentlyContent.style.overflow = "auto";
+          currentlyOn.style.display = "none";
+          currentlyContent.style.minHeight = "";
+          currentlyContent.style.bottom = "";
         }
         newContent.style.overflow = "auto";
         newOn.classList.add("on");

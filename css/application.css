@@ -322,7 +322,6 @@ body {
   z-index: 21;
   width: 100%;
   position: fixed;
-  top: 0;
   left: 0;
   overflow: hidden;
   background-color: transparent;
@@ -330,7 +329,7 @@ body {
 }
 
 .page-content .actual-content {
-  margin: 80px 20% 80px 20%;
+  margin: 0px 20%;
   background-color: rgba(255, 255, 255, 0.75);
   height: calc(100% - 120px);
   width: calc(60% - 40px);
@@ -339,6 +338,7 @@ body {
   line-height: 16px;
   font-size: 14px;
   color: black;
+  position: absolute;
 }
 
 .page-content p {
