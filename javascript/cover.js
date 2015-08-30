@@ -24,7 +24,7 @@ function coverAnimation (stopMe, withFade) {
   }
 
   function randomExtract () {
-    return parseInt(Math.random() * 19) + 1;
+    return parseInt(Math.random() * 18) + 1;
   }
 
   function extractImage () {

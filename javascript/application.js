@@ -1,5 +1,5 @@
 (function () {
-  document.addEventListener("DOMContentLoaded", function () { 
+  document.addEventListener("DOMContentLoaded", function () {
     var start = document.getElementById("start"), canGlow = true, clicked = false;
     start.addEventListener("click", function () {
       clicked = true;
@@ -39,9 +39,9 @@
 
 function lazyLoadImages () {
   var css = "", style = document.createElement('style');
-  for (var i = 1; i <= 19; i++) css += "#cover .cover" + i + " { background: #e6e6e6 url(image/" + i + ".jpg) no-repeat center center fixed; }";
+  for (var i = 1; i <= 18; i++) css += "#cover .cover" + i + " { background: #e6e6e6 url(image/" + i + ".jpg) no-repeat center center fixed; }";
   style.type = 'text/css';
-  if (style.styleSheet){
+  if (style.styleSheet) {
     style.styleSheet.cssText = css;
   } else {
     style.appendChild(document.createTextNode(css));
