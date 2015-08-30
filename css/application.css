@@ -326,30 +326,22 @@ body {
 }
 
 .page-content.on {
-  display: block;
+  /*display: block;*/
 }
 
 .page-content .actual-content {
   margin: 80px 20% 80px 20%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.75);
   height: calc(100% - 120px);
   width: calc(60% - 40px);
   overflow: auto;
-  opacity: 0.8;
   padding: 20px;
   font-family: Georgia, serif;
   line-height: 16px;
   font-size: 14px;
+  color: black;
 }
 
 .page-content p {
   margin: 0 0 10px 0;
-}
-
-@media (max-width: 600px) {
-  .page-content .actual-content {
-    margin-left: 10%;
-    margin-right: 10%;
-    width: calc(80% - 40px);
-  }
 }
