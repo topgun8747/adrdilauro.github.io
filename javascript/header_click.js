@@ -10,7 +10,6 @@ function reactToHeaderClick (identifier) {
 
   function makeAnimation () {
     var instructions;
-    newContent.style.overflow = "hidden";
     tradeWind.run([
       {
         elements: "#header-up",
@@ -28,7 +27,10 @@ function reactToHeaderClick (identifier) {
       setTimeout(function () {
         document.getElementById("header-up").style.backgroundColor = "black";
       }, 300);
+      newContent.style.overflow = "hidden";
       newContent.style.top = "80px";
+      newContent.style.minHeight = "";
+      newContent.style.bottom = "";
       instructions = [
         {
           elements: ".page-content." + identifier,
@@ -67,21 +69,12 @@ function reactToHeaderClick (identifier) {
         }
       ];
       if (currentlyOn) {
-        var minHeight = parseInt(getComputedStyle(currentlyContent).height);
         currentlyContent.style.overflow = "hidden";
-        newContent.style.top = "";
+        currentlyContent.style.top = "";
+        currentlyContent.style.bottom = "0px";
+        currentlyContent.style.minHeight = parseInt(getComputedStyle(currentlyContent).height) + "px";
         instructions.push({
           elements: ".page-content.on",
-          preStyling: [
-            {
-              property: "min-height",
-              value: minHeight + "px"
-            },
-            {
-              property: "bottom",
-              value: "0px"
-            }
-          ],
           animations: [
             {
               property: "height",
@@ -105,17 +98,13 @@ function reactToHeaderClick (identifier) {
       tradeWind.run(instructions, function () {
         if (currentlyOn) {
           currentlyOn.classList.remove("on");
-          currentlyContent.style.overflow = "auto";
           currentlyOn.style.display = "none";
-          currentlyContent.style.minHeight = "";
-          currentlyContent.style.bottom = "";
         }
         newContent.style.overflow = "auto";
         newOn.classList.add("on");
         newOn.style.zIndex = "21";
         newOn.style.borderBottom = "none";
         layer.style.display = "none";
-
       });
     });
   }
