@@ -1,6 +1,6 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
-    var start = document.getElementById("start"), canGlow = true, clicked = false;
+    var start = document.getElementById("start"), canGlow = true, clicked = false, alreadySelected = false;
     start.addEventListener("click", function () {
       clicked = true;
       start.classList.remove("glow");
@@ -26,12 +26,26 @@
     var headers = document.querySelectorAll(".header-item-content");
     for (var i = 0; i < headers.length; i++) {
       headers[i].addEventListener("mouseenter", function () {
+        if (this.classList.contains("on")) return;
         var selector = "." + this.getAttribute("class").replace("-content ", ".");
         document.querySelectorAll(selector)[0].classList.add("on");
       });
       headers[i].addEventListener("mouseleave", function () {
+        if (this.classList.contains("on")) return;
         var selector = "." + this.getAttribute("class").replace("-content ", ".");
         document.querySelectorAll(selector)[0].classList.remove("on");
+      });
+      headers[i].addEventListener("click", function () {
+        if (this.classList.contains("on")) return;
+        if (alreadySelected) {
+          var allHeaders = document.querySelectorAll(".header-item.on")
+          for (var j = 0; j < allHeaders.length; j++) allHeaders[j].classList.remove("on");
+          document.querySelectorAll(".header-item-content.on")[0].classList.remove("on");
+        }
+        alreadySelected = true;
+        var selector = "." + this.getAttribute("class").replace("-content ", ".");
+        document.querySelectorAll(selector)[0].classList.add("on");
+        this.classList.add("on");
       });
     }
   });

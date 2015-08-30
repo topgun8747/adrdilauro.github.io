@@ -229,7 +229,7 @@ body {
 }
 
 .header-item {
-  z-index: 21;
+  z-index: 24;
   width: 10%;
   height: 60px;
   position: fixed;
@@ -240,14 +240,19 @@ body {
   opacity: 0.4 !important;
 }
 
-.header-item-content:hover {
+.header-item-content:hover, .header-item-content.on {
   color: #58d3f7;
   opacity: 1;
+  text-decoration: none;
+}
+
+.header-item-content.on {
+  cursor: default;
 }
 
 .header-item-content {
   display: none;
-  z-index: 22;
+  z-index: 25;
   color: white;
   background-color: transparent;
   width: 10%;
@@ -314,7 +319,7 @@ body {
 }
 
 .page-content {
-  z-index: 25;
+  z-index: 21;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -326,7 +331,7 @@ body {
 }
 
 .page-content.on {
-  /*display: block;*/
+  display: block;
 }
 
 .page-content .actual-content {
