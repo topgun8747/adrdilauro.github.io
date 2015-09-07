@@ -57,8 +57,15 @@
 }());
 
 function lazyLoadImages () {
+  var coverExtraction = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]);
+
+  function shuffle (o) {
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+  }
+
   var css = "", style = document.createElement('style');
-  for (var i = 1; i <= 18; i++) css += "#cover .cover" + i + " { background: #e6e6e6 url(image/" + i + ".jpg) no-repeat center center fixed; }";
+  for (var i = 0; i < 6; i++) css += "#cover .cover" + (i + 1) + " { background: #e6e6e6 url(image/" + coverExtraction[i] + ".jpg) no-repeat center center fixed; }";
   style.type = 'text/css';
   if (style.styleSheet) {
     style.styleSheet.cssText = css;

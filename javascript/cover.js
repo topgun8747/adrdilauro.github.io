@@ -1,44 +1,28 @@
-function coverAnimation (stopMe, withFade) {
-  var cover = document.getElementById("cover"), imageNew, imageOld;
+function coverAnimation () {
+  var cover = document.getElementById("cover"), current = 1;
 
-  if (withFade) {
-    extractImage();
-    cover.classList.add("show" + imageNew);
-    tradeWind.run([
-      {
-        elements: "#cover",
-        animations: [
-          {
-            property: "opacity",
-            animationDetails: {
-              duration: "2.5s"
-            },
-            final: "1"
-          }
-        ]
-      }
-    ]);
-    setTimeout(coverRecursion, 2000);
-  } else {
-    coverRecursion();
-  }
-
-  function randomExtract () {
-    return parseInt(Math.random() * 18) + 1;
-  }
-
-  function extractImage () {
-    var temp = randomExtract();
-    while (temp === imageNew) temp = randomExtract();
-    imageOld = imageNew;
-    imageNew = temp;
-  }
+  cover.classList.add("show1");
+  tradeWind.run([
+    {
+      elements: "#cover",
+      animations: [
+        {
+          property: "opacity",
+          animationDetails: {
+            duration: "2.5s"
+          },
+          final: "1"
+        }
+      ]
+    }
+  ]);
+  setTimeout(coverRecursion, 2000);
 
   function coverRecursion () {
-    if (stopMe.stop) return;
-    extractImage();
-    cover.classList.add("show" + imageNew);
-    cover.classList.remove("show" + imageOld);
+    current += 1;
+    if (current > 6) return;
+    cover.classList.add("show" + current);
+    cover.classList.remove("show" + (current - 1));
     setTimeout(coverRecursion, 600);
   }
 }

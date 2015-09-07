@@ -80,11 +80,9 @@ function initialAnimation () {
   }
 
   function bigConversionOfBalls () {
-    var instructions = [], side, position, instruction, details, coverBlocker = {}, stopCover = function () {
-      coverBlocker.stop = true;
-    };
+    var instructions = [], side, position, instruction, details;
     setTimeout(function () {
-      coverAnimation(coverBlocker, true);
+      coverAnimation();
     }, 1000);
     for (var i = 1; i <= 36; i++) {
       side = convertSide(i);
@@ -182,11 +180,11 @@ function initialAnimation () {
       ]
     });
     tradeWind.run(instructions, function () {
-      moveUpPhoto(stopCover)
+      moveUpPhoto()
     });
   }
   
-  function moveUpPhoto (stopCover) {
+  function moveUpPhoto () {
     var balls = document.querySelectorAll(".ball");
     for (var i = 0; i < balls.length; i++) balls[i].style.display = "none";
     var details = {
@@ -345,7 +343,6 @@ function initialAnimation () {
     ], function () {
       var newBorders = document.querySelectorAll(".new-borders");
       for (var i = 0; i < newBorders.length; i++) newBorders[i].style.display = "none";
-      stopCover();
       createHeader();
     });
   }
