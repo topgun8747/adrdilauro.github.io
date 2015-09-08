@@ -3,10 +3,30 @@ function reactToHeaderClick (identifier) {
       currentlyOn = document.querySelector(".page-content.on"),
       newOn = document.querySelector(".page-content." + identifier),
       currentlyContent = document.querySelector(".page-content.on .actual-content"),
-      newContent = document.querySelector(".page-content." + identifier + " .actual-content");
+      newContent = document.querySelector(".page-content." + identifier + " .actual-content"),
+      cover = document.getElementById("cover"),
+      targetCoverSelector = "#cover .cover" + mapIdentifier(),
+      oldCoverSelector = "#cover .cover" + cover.classList[0].replace("show", ""),
+      targetCover = document.querySelectorAll(targetCoverSelector)[0],
+      oldCover = document.querySelectorAll(oldCoverSelector)[0];
   document.getElementById("signature").style.display = "none";
   layer.style.display = "block";
-  makeAnimation();
+  if (oldCoverSelector !== targetCoverSelector) {
+    animationChangeCover(makeAnimation);
+  } else {
+    makeAnimation();
+  }
+
+  function mapIdentifier () {
+    return {
+      about: 6,
+      skills: 5,
+      experience: 4,
+      education: 3,
+      languages: 2,
+      contact: 1
+    }[identifier];
+  }
 
   function makeAnimation () {
     var instructions;
@@ -106,6 +126,37 @@ function reactToHeaderClick (identifier) {
         newOn.style.borderBottom = "none";
         layer.style.display = "none";
       });
+    });
+  }
+
+  function animationChangeCover (callback) {
+    targetCover.style.visibility = "visible";
+    tradeWind.run([
+      {
+        elements: oldCoverSelector,
+        preStyling: [
+          {
+            property: "z-index",
+            value: "11"
+          }
+        ],
+        animations: [
+          {
+            property: "opacity",
+            animationDetails: {
+              duration: "0.5s"
+            },
+            final: "0"
+          }
+        ]
+      }
+    ], function () {
+      oldCover.style.zIndex = "";
+      targetCover.style.visibility = "";
+      oldCover.style.opacity = "";
+      cover.classList.remove(cover.classList[0]);
+      cover.classList.add("show" + mapIdentifier());
+      callback();
     });
   }
 }
