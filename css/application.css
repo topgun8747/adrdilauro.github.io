@@ -319,3 +319,16 @@ body {
 .page-content p.last {
   margin-bottom: 30px;
 }
+
+.page-content a {
+  color: black;
+  cursor: pointer;
+}
+
+.page-content a:visited {
+  text-decoration: none;
+}
+
+.page-content a:hover {
+  text-decoration: underline;
+}
